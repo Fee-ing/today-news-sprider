@@ -88,20 +88,10 @@ def crawl_data():
 def save_news_json(data_list, filepath="news.json"):
     """将爬取数据保存为本地 JSON 文件，返回格式化后的数据"""
     now = datetime.now(ZoneInfo("Asia/Shanghai"))
-    year = now.strftime('%Y')
-    month = now.strftime('%m')
-    day = now.strftime('%d')
-    hour = now.strftime('%H')
-    minute = now.strftime('%M')
-    second = now.strftime('%S')
+    timestamp = int(now.timestamp())
 
     json_data = {
-        "year": year,
-        "month": month,
-        "day": day,
-        "hour": hour,
-        "minute": minute,
-        "second": second,
+        "timestamp": timestamp,
         "events": data_list,
     }
 
