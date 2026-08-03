@@ -225,9 +225,9 @@ if __name__ == "__main__":
   data = crawl_data()
 
   if data:
-    print("数据爬取成功，正在发送邮件...")
+    print("数据爬取成功")
 
     json_data = save_news_json(data)
     push_to_github_pages(json_data)
   else:
-    print("数据爬取失败，跳过邮件发送。")
+    print("数据爬取失败")
