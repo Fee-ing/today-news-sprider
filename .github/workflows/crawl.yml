@@ -29,8 +29,8 @@ jobs:
 
     - name: 运行爬虫脚本
       env:
-        PAT: ${{ secrets.GH_PAT }}
-        REPO: ${{ secrets.GH_REPO }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+        GH_REPO: ${{ secrets.GH_REPO }}
       run: python main.py
 
     - name: 执行结果
