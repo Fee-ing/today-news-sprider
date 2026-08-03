@@ -92,7 +92,7 @@ def save_news_json(data_list, filepath="news.json"):
 
     json_data = {
         "timestamp": timestamp,
-        "events": data_list,
+        "data": data_list,
     }
 
     with open(filepath, 'w', encoding='utf-8') as f:
