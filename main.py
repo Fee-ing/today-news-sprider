@@ -32,7 +32,7 @@ def crawl_data():
     response = requests.get(URL, headers=headers, timeout=15)
     response.raise_for_status()  # 如果状态码不是200，会抛出异常
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.content, "html.parser")
 
     # --- 重要：请在这里编写你具体的解析逻辑 ---
     # 示例：获取某个特定元素，如一个新闻列表的第一条新闻
