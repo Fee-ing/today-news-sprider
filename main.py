@@ -115,8 +115,8 @@ def crawl_sports_data():
       })
 
     return [
-      {"source": "足球", "type": "体育", "content": soccer},
-      {"source": "篮球", "type": "体育", "content": basketball},
+      {"source": "足球", "type": "直播吧", "content": soccer},
+      {"source": "篮球", "type": "直播吧", "content": basketball},
     ]
 
   except requests.exceptions.RequestException as e:
