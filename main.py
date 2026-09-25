@@ -18,6 +18,8 @@ NEWS_URL = "https://tophub.today/"
 
 SPORTS_URL = "https://www.zhibo8.com/"
 
+MEMES_URL = "https://meme-digest.app.workbuddy.host/memes.json"
+
 
 load_dotenv()
 
@@ -128,6 +130,32 @@ def crawl_sports_data():
     traceback.print_exc()
     return None
 
+
+def crawl_memes_data():
+    api_url = MEMES_URL
+
+    print(api_url)
+
+    headers = {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+    
+    try:
+      response = requests.get(api_url, headers=headers)
+      response.raise_for_status()
+      data = response.json()
+      
+      return data
+
+
+    except requests.exceptions.RequestException as e:
+        print(f"网络请求失败: {e}")
+        return None
+    except Exception as e:
+      import traceback
+      print(f"数据获取失败：{e}")
+      traceback.print_exc()
+      return None
 
 def save_news_json(data_list, filepath="news.json"):
     """将爬取数据保存为本地 JSON 文件，返回格式化后的数据"""
@@ -274,16 +302,19 @@ if __name__ == "__main__":
   print("开始爬取数据...")
   news_data = crawl_news_data()
   sports_data = crawl_sports_data()
+  memes_data = crawl_memes_data()
 
-  if news_data and sports_data:
+  if news_data and sports_data and memes_data:
     print("数据爬取成功")
 
     json_news_data = save_news_json(news_data, "news.json")
     json_sports_data = save_news_json(sports_data, "sports.json")
+    json_memes_data = save_news_json(memes_data, "memes.json")
     
     push_to_github_pages([
         (json_news_data, "news.json"),
         (json_sports_data, "sports.json"),
+        (json_memes_data, "memes.json"),
     ])
   else:
     print("数据爬取失败")
